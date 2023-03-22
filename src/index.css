@@ -1,0 +1,18 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 2em;
+  min-height: 100vh;
+  position: relative;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+}
+

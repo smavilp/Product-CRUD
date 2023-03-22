@@ -1,0 +1,345 @@
+/* Variables */
+
+:root{
+  --white: rgba(255, 255, 255, 0.87);
+  --button_color: #545C85;
+  --button_color2: #D75859;
+  --title_color:#213547;
+  --text_color: #d5d1d1;
+  --text_color2: #707070;
+}
+
+/* MIXINS */
+
+@mixin responsive ($min_width){
+  @media screen and (min-width: $min_width){
+    @content;
+  }
+}
+
+@mixin flex ($direction, $just, $align, $gap){
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin grid ($columns, $rows, $gap){
+  display: grid;
+  grid-template-columns: repeat($columns,1fr);
+  grid-template-rows: repeat($rows, 1fr);
+  gap: $gap;
+}
+
+@mixin font ($color, $size, $weight){
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+}
+
+/* Styles */
+
+.App{
+
+  margin: auto;
+  max-width: 1500px;
+  
+  &__header{
+    @include flex(row, space-between, center, 0);
+    margin-bottom: 3em;
+  }
+
+  &__h1{
+    font-size: 2.25em;
+  }
+
+  &__btn{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    padding: 1.25em;
+    transition: .3s;
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
+.ProductsForm{
+  @include flex(column, center, center, 0);
+  background-color: #707070cd;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &__container{
+    background-color: var(--white);
+    border: 2px solid var(--text_color);
+    padding: 2em;
+    position: relative;
+  }
+
+
+  &__btn{
+    background-color: transparent;
+    position: absolute;
+    right: .5em;
+    top: .5em;
+  }
+
+  &__h2{
+    margin-bottom: 1em;
+  }
+
+  &__form{
+    @include flex(column, center, start, 1.25em)
+  }
+
+  &__div{
+    @include flex(column, center, start, .2em);
+    width: 100%;
+  }
+
+  &__label{
+    @include font(var(--title_color), .75em, 700)
+  }
+
+  &__label--availability{
+    align-self: center;
+  }
+
+  &__input{
+    border: 1px solid var(--text_color);
+    padding: .25em;
+    width: 100%;
+  }
+
+  &__input--availability{
+    align-self: center;
+    width: auto;
+  }
+
+  &__span{
+    color: var(--button_color2);
+    font-size: .75em;
+  }
+
+  &__input--submit{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    cursor: pointer;
+    padding: .75em;
+    transition: .3s;
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
+.ProductsList{
+  list-style: none;
+  padding: 0 1em;
+  @include responsive(550px){
+    @include grid(2, auto, 2em)
+  }
+  @include responsive(800px){
+    @include grid(3, auto, 2em)
+  }
+  @include responsive(1100px){
+    @include grid(4, auto, 2em)
+  }
+
+  &__li{
+    border: 2px solid var(--text_color);
+    padding: .5em;
+    margin-bottom: 2em;
+    // max-width: 16.5em;
+  }
+
+  &__h2{
+    text-align: center;
+  }
+
+ &__hr{
+  margin: .75em 0;
+ }
+  
+  &__div--category{
+    @include flex(column, center, start, 0);
+    margin-bottom: .75em;
+  }
+
+  &__span--subtitle{
+    color: var(--text_color);
+    text-transform: uppercase;
+  }
+
+   &__div--price{
+    @include flex(column, center, start, 0)
+  }
+
+  &__div--sub{
+    @include flex(row, space-between, center, 0)
+  }
+
+  &__span--available{
+    color: #6bc62e;
+  }
+
+  &__span--not-available{
+    color: var(--button_color2);
+  }
+
+  &__div--btns{
+    @include flex(row, space-between, center, .5em )
+  }
+
+  &__btn--delete{
+    background-color: var(--button_color2);
+    color: var(--white);
+    padding: .5em;
+  }
+
+  &__btn--edit{
+    padding: .5em;
+  }
+}
+
+.AddedPopUp{
+  @include flex(column, center, center, 0);
+  background-color: #707070cd;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &__div{
+    @include flex(column, center, center, 1.25em);
+    background-color: var(--white);
+    padding: 2em;
+  }
+
+  &__h3{
+    color: var(--title_color);
+  }
+
+  &__btn{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    padding: 1em;
+    transition: .3s;
+    width: 100%;
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
+.UpdatedPopUp{
+  @include flex(column, center, center, 0);
+  background-color: #707070cd;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &__div{
+    @include flex(column, center, center, 1.25em);
+    background-color: var(--white);
+    padding: 2em;
+  }
+
+  &__h3{
+    color: var(--title_color);
+  }
+
+  &__btn{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    padding: 1em;
+    transition: .3s;
+    width: 100%;
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
+.ConfirmDelete{
+  @include flex(column, center, center, 0);
+  background-color: #707070cd;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &__div{
+    @include flex(column, center, center, 1.25em);
+    background-color: var(--white);
+    padding: 2em;
+  }
+
+  &__h3{
+    color: var(--title_color);
+  }
+
+  &__div--btns{
+    @include flex(row, center, center, 2em);
+
+  }
+
+  &__btn{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    padding: 1em;
+    transition: .3s;
+    width: 6em;
+
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
+.DeletedPopUp{
+  @include flex(column, center, center, 0);
+  background-color: #707070cd;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &__div{
+    @include flex(column, center, center, 1.25em);
+    background-color: var(--white);
+    padding: 2em;
+  }
+
+  &__h3{
+    color: var(--title_color);
+  }
+
+  &__btn{
+    color: var(--white) ;
+    background-color: var(--button_color);
+    padding: 1em;
+    transition: .3s;
+    width: 100%;
+
+    &:hover{
+      background-color: var(--title_color);
+    }
+  }
+}
+
