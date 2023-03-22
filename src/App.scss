@@ -195,18 +195,18 @@
   }
 
   &__div--btns{
-    @include flex(row, space-between, center, .5em )
+    @include flex(row, space-between, center, 1em )
+  }
+
+  &__btn{
+    padding: 0.75em 1.25em;
   }
 
   &__btn--delete{
     background-color: var(--button_color2);
     color: var(--white);
-    padding: .5em;
   }
 
-  &__btn--edit{
-    padding: .5em;
-  }
 }
 
 .AddedPopUp{
